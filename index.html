@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Parking Status</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .slot {
+      display: inline-block;
+      margin: 20px;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      font-size: 24px;
+      width: 200px;
+      transition: all 0.3s ease;
+    }
+
+    .available {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .occupied {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+
+    #timestamp {
+      margin-top: 30px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Smart Parking Slot Status</h1>
+
+  <div id="slot1" class="slot">Slot 1</div>
+  <div id="slot2" class="slot">Slot 2</div>
+
+  <div id="timestamp"></div>
+
+  <script>
+    async function fetchStatus() {
+      try {
+        const response = await fetch("http://localhost:3000/parking-status");
+        const data = await response.json();
+
+        const slot1 = document.getElementById("slot1");
+        const slot2 = document.getElementById("slot2");
+        const timestamp = document.getElementById("timestamp");
+
+        slot1.textContent = `Slot 1: ${data.slot1}`;
+        slot2.textContent = `Slot 2: ${data.slot2}`;
+        timestamp.textContent = `Last updated: ${new Date(data.time).toLocaleString()}`;
+
+        slot1.className = `slot ${data.slot1.toLowerCase()}`;
+        slot2.className = `slot ${data.slot2.toLowerCase()}`;
+      } catch (err) {
+        console.error("Error fetching data:", err);
+      }
+    }
+
+    // Fetch initially and then every 5 seconds
+    fetchStatus();
+    setInterval(fetchStatus, 1000);
+  </script>
+
+</body>
+</html>
