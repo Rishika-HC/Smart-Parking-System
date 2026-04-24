@@ -1,0 +1,134 @@
+exp1:
+go to desktop: create git_demo folder,copy it's path
+go to git bash and type : cd <path>
+git init 
+ls -a
+git log (if it says fatal u shld give username & email)
+git config --global user.name nisarga
+git config --global user.email "nisarga@gmail.com"
+go to that folder and create a text file put some content into it
+git add .
+git commit -m "this is my first file"
+git log
+===================================================
+exp2:
+cd <path> 
+git init
+touch readme.txt
+edit the file and put some content into it
+git add & commit
+git branch
+git branch feature-branch
+git checkout feature-branch
+edit the same file & same line and put some content into it
+git add .
+git commit -m "msg"
+git checkout master
+after checkout edit the same file &same line
+git add & commit
+git merge feature-branch(conflict raised)
+====================================================
+exp3:
+cd <local_path>
+git init
+go to GitHub ->create new repo->public->add readme on->create repo
+copy that github url
+in git bash:
+git clone <github_url>
+cd <repo-name>
+touch main.py
+add content into it,save
+git add and commit
+git push origin main
+====================================================
+exp4:
+do exp3 and continue
+git checkout -b feature-1
+touch feature.txt(view in desk only,add some content) 
+git add and commit
+git push origin feature-1
+go to GitHub:
+compare pull req->confirm pull req->merge pull req->confirm merge
+come to gitbash:
+git checkout main
+git pull origin main
+====================================================
+exp5:
+do exp 3 and continue
+to create tag: git tag v1.0
+to view tags: git tag
+to create anotated tag: git tag -a v1.2 -m "v1.2 created"
+git tag
+to push tag: git push origin v1.0(to push specific)
+git push --tags
+to delete tag:
+for local deletion: git tag -d v1.0
+for remote deletion: git push origin -d v1.0
+====================================================
+exp6:
+open cmd :mvn --version
+mvn archetype:generate
+num:num
+choose num:num
+groupid:com.bnmit
+archifactid:sample-app
+version-1.0:just press enter
+package:com.bnmit
+press Y
+-------
+cd sample-app
+mvn package
+mvn clean
+mvn site
+sample-app-->src-->main-->java-->com-->bnmit-->app.java-->open file and paste the Bank Application Code 
+mvn clean
+mvn package
+cd target
+java -cp sample-app-1.0-SNAPSHOT.jar com.bnmit.BankService 
+=====================================================
+exp7:
+go to GitHub->create new repo->add text file->add content->commit changes
+go to Jenkins
+give name->freestyle project
+source code management->git->give url,add credentials
+build steps->execute batch commands->
+echo Jenkins Build Started
+type message.txt
+echo Build completed successfully > output.txt
+post build actions->archive the artifacts->
+output.txt
+apply->save
+go for build now->console o/p
+====================================================
+exp8:
+go to GitHub->create new repo->add file->add content->commit changes
+go to Jenkins
+name it->free style
+discard old builds(5,5)
+source code management->git->give url,add credentials
+change branch specifier to main
+1)triggers->poll scm 
+2)triggers->build periodically
+build steps
+javac BankService.java
+java BankService
+apply save
+3)triggers->GitHub webhook 
+go to GitHub ->settings->add webhook->payload url(https://your-jenkins-instance.com)->content type(.json)->save
+come to Jenkins rest everything same save and apply
+===================================================
+exp9 & exp10:
+go to github->create new repo->Jenkinsfile(add)
+login to Jenkins
+new->pipeline->log rotation(5,5)
+pipeline script with svm->git->give url and credentials
+apply and save 
+====================================================
+
+
+
+
+
+
+
+
