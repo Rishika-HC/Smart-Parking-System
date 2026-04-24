@@ -127,7 +127,46 @@ apply and save
 
 
 
+Download Ngrok Open: https://ngrok.com/download Download Windows version. Extract the downloaded zip file. You will get ngrok.exe.
+Place ngrok.exe somewhere easy like:
 
+C:\ngrok 2. Create Ngrok Account (to get Auth Token) Go to: https://dashboard.ngrok.com/signup Sign up using Google or email. After login open: https://dashboard.ngrok.com/get-started/your-authtoken Copy the Auth Token.
+
+It looks like:
+
+ngrok config add-authtoken 2abc12345xxxxxxxxxxxxxxxx 3. Add Auth Token in Ngrok
+
+Open Command Prompt.
+
+Go to the ngrok folder:
+
+cd C:\ngrok
+
+Paste the command you copied:
+
+ngrok config add-authtoken YOUR_TOKEN
+
+Example:
+
+ngrok config add-authtoken 2abc12345xxxxxxxx
+
+You will see:
+
+Authtoken saved to configuration file 4. Start Jenkins
+
+Start Jenkins normally.
+
+Open Jenkins in browser:
+
+http://localhost:8080 5. Run Ngrok for Jenkins
+
+In Command Prompt:
+
+ngrok http 8080
+
+Ngrok will generate a public URL like:
+
+Forwarding https://abcd1234.ngrok-free.app -> http://localhost:8080# webhook
 
 
 
